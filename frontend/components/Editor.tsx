@@ -1,0 +1,20 @@
+import React, { useEffect } from 'react'
+import EditorJS from '@editorjs/editorjs'
+
+const Editor = () => {
+  useEffect(() => {
+    const editor = new EditorJS({
+      holder: 'editor',
+      placeholder: 'Введите текст для статьи'
+    })
+
+    return () => {
+      editor.isReady
+        .then(() => editor.destroy())
+        .catch((e) => console.log('Editor has been destroyed', e))
+    }
+  }, [])
+  return <div id="editor" />
+}
+
+export default Editor
